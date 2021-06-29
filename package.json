@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "@iarna/toml": "^2.2.5",
+    "amqplib": "^0.8.0",
+    "fast-xml-parser": "^3.19.0",
+    "logger": "github:wizo06/logger",
+    "node-fetch": "^2.6.1"
+  },
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "workspaces": [
+    "config"
+  ]
+}
