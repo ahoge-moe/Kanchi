@@ -16,15 +16,15 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
     
     await channel.prefetch(1)
     
-    logger.info(`Asserting exchange`)
+    logger.info(`Asserting outbound exchange`)
     await channel.assertExchange(outbound.exchange, 'direct')
-    logger.success(`Exchange asserted`, logger.color.green)
+    logger.success(`Outbound exchange asserted`, logger.color.green)
 
-    logger.info(`Asserting queue`)
+    logger.info(`Asserting outbound queue`)
     await channel.assertQueue(outbound.queue)
-    logger.success(`Queue asserted`, logger.color.green)
+    logger.success(`Outbound queue asserted`, logger.color.green)
 
-    logger.info(`Binding exchange to queue`)
+    logger.info(`Binding outbound exchange to outbound queue`)
     await channel.bindQueue(outbound.queue, outbound.exchange, outbound.routingKey)
     logger.success(`Binding established`, logger.color.green)
       
