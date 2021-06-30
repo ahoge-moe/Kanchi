@@ -13,9 +13,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
     const connection = await amqp.connect(outbound)
     const channel = await connection.createChannel()
     logger.success(`Connection to RabbitMQ established`, logger.color.green)
-    
-    await channel.prefetch(1)
-    
+        
     logger.info(`Asserting outbound exchange`)
     await channel.assertExchange(outbound.exchange, 'direct')
     logger.success(`Outbound exchange asserted`, logger.color.green)
@@ -28,7 +26,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
     await channel.bindQueue(outbound.queue, outbound.exchange, outbound.routingKey)
     logger.success(`Binding established`, logger.color.green)
       
-    const history = JSON.parse(readFileSync('./history.json'))
+    const history = JSON.parse(readFileSync('config/history.json'))
 
     while (true) {
       logger.info(`Fetching rss`)
@@ -63,7 +61,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
         )
   
         history.push(item.guid)
-        writeFileSync('./history.json', JSON.stringify(history))
+        writeFileSync('config/history.json', JSON.stringify(history))
       }
 
       await sleep(300000) // 5 minutes

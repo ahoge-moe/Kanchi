@@ -1,0 +1,5 @@
+# Add as many elements to the array as you need.
+# "link" and "show" are required.
+items = [
+  { title = "", link = "", show = "" },
+]

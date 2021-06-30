@@ -7,7 +7,8 @@
     "node-fetch": "^2.6.1"
   },
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "manual": "node src/manual.js"
   },
   "workspaces": [
     "config"
