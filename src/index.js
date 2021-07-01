@@ -12,19 +12,19 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
     logger.info(`Connecting to RabbitMQ`)
     const connection = await amqp.connect(outbound)
     const channel = await connection.createChannel()
-    logger.success(`Connection to RabbitMQ established`, logger.color.green)
+    logger.success(`Connection to RabbitMQ established`)
         
     logger.info(`Asserting outbound exchange`)
     await channel.assertExchange(outbound.exchange, 'direct')
-    logger.success(`Outbound exchange asserted`, logger.color.green)
+    logger.success(`Outbound exchange asserted`)
 
     logger.info(`Asserting outbound queue`)
     await channel.assertQueue(outbound.queue)
-    logger.success(`Outbound queue asserted`, logger.color.green)
+    logger.success(`Outbound queue asserted`)
 
     logger.info(`Binding outbound exchange to outbound queue`)
     await channel.bindQueue(outbound.queue, outbound.exchange, outbound.routingKey)
-    logger.success(`Binding established`, logger.color.green)
+    logger.success(`Binding established`)
       
     const history = JSON.parse(readFileSync('config/history.json'))
 
