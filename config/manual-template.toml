@@ -1,5 +1,4 @@
-# Add as many elements to the array as you need.
-# "link" and "show" are required.
-items = [
-  { title = "", link = "", show = "" },
+# Add as many magnet links as needed to the array
+magnet_links = [
+  ""
 ]

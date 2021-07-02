@@ -1,6 +1,3 @@
-[rss]
-url = ""
-
 [rabbitmq]
 
   [rabbitmq.outbound]

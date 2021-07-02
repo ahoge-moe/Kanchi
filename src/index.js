@@ -3,7 +3,7 @@ const fetch = require('node-fetch')
 const logger = require('logger')
 const parser = require('fast-xml-parser')
 const { writeFileSync, readFileSync } = require('fs')
-const { rabbitmq: { outbound }, rss: { url } } = require('@iarna/toml').parse(readFileSync('config/config.toml'))
+const { rabbitmq: { outbound } } = require('@iarna/toml').parse(readFileSync('config/config.toml'))
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -30,7 +30,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
     while (true) {
       logger.info(`Fetching rss`)
-      const res = await fetch(url)
+      const res = await fetch('https://subsplease.org/rss/?r=1080')
       const body = await res.text()
       const jsonObj = parser.parse(body)
       const items = jsonObj.rss?.channel?.item

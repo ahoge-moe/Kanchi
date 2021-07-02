@@ -22,20 +22,15 @@ const { rabbitmq: { outbound } } = require('@iarna/toml').parse(readFileSync('co
     await channel.bindQueue(outbound.queue, outbound.exchange, outbound.routingKey)
     logger.success(`Binding established`)
 
-    const { items } = require('@iarna/toml').parse(readFileSync('config/manual.toml'))
+    const { magnet_links } = require('@iarna/toml').parse(readFileSync('config/manual.toml'))
       
-    for (const item of items) {  
-      logger.info(`Publishing ${item.title}`)
-      const data = {
-        title: item.title,
-        link: item.link,
-        show: item.show
-      }
+    for (const link of magnet_links) {  
+      logger.info(`Publishing`)
   
       await channel.publish(
         outbound.exchange,
         outbound.routingKey,
-        Buffer.from(JSON.stringify(data)),
+        Buffer.from(link),
         { persistent: true }
       )
     }
