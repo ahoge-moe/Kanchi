@@ -9,8 +9,5 @@
   "scripts": {
     "start": "node src/index.js",
     "manual": "node src/manual.js"
-  },
-  "workspaces": [
-    "config"
-  ]
+  }
 }

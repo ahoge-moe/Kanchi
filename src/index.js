@@ -36,13 +36,13 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
       const items = jsonObj.rss?.channel?.item
   
       for (const item of items) {
-        if (item.title.match(/\[Batch\]/)) {
-          logger.debug(`Skipping batch: ${item.title}`)
+        if (item.title.match(/\[Batch\]$/)) {
+          logger.debug(`Skip batch: ${item.title}`)
           continue
         }
   
         if (history.includes(item.guid)) {
-          logger.debug(`Skipping already processed: ${item.title}`)
+          logger.debug(`Skip old: ${item.title}`)
           continue
         }
     
