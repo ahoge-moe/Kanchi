@@ -1,6 +1,6 @@
 const amqp = require('amqplib')
 const fetch = require('node-fetch')
-const logger = require('logger')
+const logger = require('@wizo06/logger')
 const parser = require('fast-xml-parser')
 const { writeFileSync, readFileSync } = require('fs')
 const { rabbitmq: { outbound } } = require('@iarna/toml').parse(readFileSync('config/config.toml'))
@@ -25,9 +25,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
     logger.info(`Binding outbound exchange to outbound queue`)
     await channel.bindQueue(outbound.queue, outbound.exchange, outbound.routingKey)
     logger.success(`Binding established`)
-      
-    const history = JSON.parse(readFileSync('config/history.json'))
-
+    
     while (true) {
       logger.info(`Fetching rss`)
       const res = await fetch('https://subsplease.org/rss/?r=1080')
@@ -50,7 +48,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
         const data = {
           title: item.title,
           link: item.link,
-          show: item.category
+          show: item.category.replace(/- 1080$/, '')
         }
     
         await channel.publish(

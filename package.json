@@ -1,13 +1,14 @@
 {
   "dependencies": {
     "@iarna/toml": "^2.2.5",
+    "@wizo06/logger": "^1.0.0",
     "amqplib": "^0.8.0",
+    "cheerio": "^1.0.0-rc.10",
     "fast-xml-parser": "^3.19.0",
-    "logger": "github:wizo06/logger",
     "node-fetch": "^2.6.1"
   },
   "scripts": {
     "start": "node src/index.js",
-    "manual": "node src/manual.js"
+    "reddit": "node src/reddit.js"
   }
 }
